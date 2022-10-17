@@ -26,3 +26,46 @@ function decodeString(code) {
 console.log(decodeString("1a")) 
 console.log(decodeString("3ce")) 
 console.log(decodeString("2fcjjm"))
+
+
+// Jared's Solution:
+const letterList = ['a','b','c','d','e','f','g','h','i',
+    'j','k','l','m','n','o','p','q','r',
+    's','t','u','v','w','x','y','z',]
+
+function decode(str) {
+    //take the first character (the number) from the string, turn it into a number and save it
+    let num = +str[0]
+
+    //create a blank answer string
+    let answer = ''
+
+    //make it so they can send in uppercase letters, too (output will still be lowercase, though)
+    str = str.toLowerCase()
+
+    //then, loop through each letter in the string 
+    for (let i = 1; i < str.length; i++) {
+        //and find its index in my letter array
+        let origIndex = letterList.indexOf(str[i])
+
+        //take the index, add it to the number we popped off the string, and then
+        //get the letter in my letter array at that new index
+        let newIndex = origIndex + num
+
+        //this is extra code that handles if the newIndex is out of the bounds of the array
+        //if it is, it makes newIndex be the index of the letter 
+        if ((newIndex + 1) > 26) {
+            newIndex = (newIndex + 1) % 26 - 1
+        }
+
+        //append this new letter onto my answer string
+        answer += letterList[newIndex]
+    }
+
+    //return answer
+    return answer
+}
+
+console.log(decode("1a"))
+console.log(decode("3ce"))
+console.log(decode("28fcjjz"))
