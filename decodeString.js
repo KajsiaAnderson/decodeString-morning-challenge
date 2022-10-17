@@ -26,8 +26,3 @@ function decodeString(code) {
 console.log(decodeString("1a")) 
 console.log(decodeString("3ce")) 
 console.log(decodeString("2fcjjm"))
-
-
-
-
-//   jared's solution:
